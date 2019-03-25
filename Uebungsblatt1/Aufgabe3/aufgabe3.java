@@ -1,4 +1,4 @@
-package Aufgabe3;
+package Uebungsblatt1.Aufgabe3;
 
 public class aufgabe3 {
     public static void main(String[] args) {

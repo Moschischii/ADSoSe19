@@ -1,4 +1,4 @@
-package Aufgabe2;
+package Uebungsblatt1.Aufgabe2;
 
 import java.util.ArrayList;
 import java.util.List;

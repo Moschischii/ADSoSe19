@@ -1,4 +1,4 @@
-package Aufgabe3;
+package Uebungsblatt1.Aufgabe3;
 
 import java.util.Scanner;
 
