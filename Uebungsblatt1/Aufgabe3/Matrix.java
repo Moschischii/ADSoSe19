@@ -2,11 +2,11 @@ package Uebungsblatt1.Aufgabe3;
 
 import java.util.Scanner;
 
-public final class Matrix {
+public class Matrix {
 
-    final int m;
-    final int n;
-    final int[][] matrix;
+    private int m;
+    private int n;
+    private int[][] matrix;
 
     Matrix(int m, int n) {
         this.m = m;
@@ -34,7 +34,7 @@ public final class Matrix {
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < this.m; i++) {
             for (int j = 0; j < this.n; j++) {
-                System.out.print("Wert für m:"+i+" n:"+j+" eingeben:");
+                System.out.print("Wert für m:"+i+" n:"+j+" eingeben: ");
                 int input = scanner.nextInt();
                 this.matrix[i][j] = input;
             }
@@ -58,20 +58,19 @@ public final class Matrix {
     }
 
     public Matrix mult(Matrix M) {
-       if (this.m != M.n) {
-           System.out.println("Matrix hat nicht die gleiche Größe!");
-           return M;
-       }
-       else {
+       if (this.n == M.m) {
            Matrix out = new Matrix(this.m,M.n);
            for (int i = 0; i < out.m; i++) {
-               for (int j = 0; j < out.n; i++) {
-                   for (int k = 0; k < this.n; k++) {
-                       out.matrix[i][j] += (this.matrix[i][k] * M.matrix[k][j]); //TODO: fix out ouf bounds
-                   }
+               for (int j = 0; j < out.n; j++) {
+                   for (int k = 0; k < this.n; k++)
+                       out.matrix[i][j] += (this.matrix[i][k] * M.matrix[k][j]);
                }
            }
            return out;
+       }
+       else {
+           System.out.println("Matrix hat nicht die gleiche Größe!");
+           return M;
        }
     }
 }
