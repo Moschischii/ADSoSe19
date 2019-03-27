@@ -4,26 +4,30 @@ import java.util.Scanner;
 
 public class aufgabe4 {
     public static void main(String[] args) {
-        System.out.print("Maximale Zeit in sek eingeben: ");
-
-        Scanner scanner = new Scanner(System.in);
-        int maxTime = scanner.nextInt();
         System.out.print("Startgröße der Matrix eingeben: ");
+        Scanner scanner = new Scanner(System.in);
         int m = scanner.nextInt();
         int n = m;
 
+        System.out.print("Automatisiert? Ja/Nein: ");
+        String auto = scanner.next();
 
-        System.out.println("Start - Dauer maximal "+maxTime+" sek");
+        if (auto.equals("Ja")) {
 
-        while (true) {
-            long multTime = mult(m,n);
-            System.out.println("M = " + m + " N = " + n + " Zeit = " + (multTime/1000) + " sek");
-            if (multTime/1000 > maxTime) {
-                System.out.println("Ergebnis Mult: M = " + m + " N = " + n + " Zeit = " + (multTime/1000) + " sek");
-                break;
+            System.out.print("Maximale Zeit in sek eingeben: ");
+            int maxTime = scanner.nextInt();
+            System.out.println("Start - Dauer maximal "+maxTime+" sek");
+            while (true) {
+                long multTime = mult(m,n);
+                System.out.println("M = " + m + " N = " + n + " Zeit = " + (multTime/1000) + " sek");
+                if (multTime/1000 > maxTime) {
+                    System.out.println("Ergebnis Mult: M = " + m + " N = " + n + " Zeit = " + (multTime/1000) + " sek");
+                    break;
+                }
+                m = m + 10;
+                n = n + 10;
             }
-            m = m + 10;
-            n = n + 10;
+
         }
 
         long addTime = add(m,n);
