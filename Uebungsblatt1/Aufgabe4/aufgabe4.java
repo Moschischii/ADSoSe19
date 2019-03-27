@@ -6,18 +6,16 @@ public class aufgabe4 {
         int maxTime = 60; // max time in sek
         System.out.println("Start");
 
-        /*
         while (true) {
-            m = m + 10;
-            n = n + 10;
             long multTime = mult(m,n);
             System.out.println("M = " + m + " N = " + n + " Zeit = " + (multTime/1000) + " sek");
             if (multTime/1000 > maxTime) {
                 System.out.println("Ergebnis Mult: M = " + m + " N = " + n + " Zeit = " + (multTime/1000) + " sek");
                 break;
             }
+            m = m + 10;
+            n = n + 10;
         }
-        */
 
         long addTime = add(m,n);
         long multTime = mult(m,n);
