@@ -1,10 +1,19 @@
 package Uebungsblatt1.Aufgabe4;
 
+import java.util.Scanner;
+
 public class aufgabe4 {
     public static void main(String[] args) {
-        int m = 2000, n = 2000;
-        int maxTime = 60; // max time in sek
-        System.out.println("Start");
+        System.out.print("Maximale Zeit in sek eingeben: ");
+
+        Scanner scanner = new Scanner(System.in);
+        int maxTime = scanner.nextInt();
+        System.out.print("Startgröße der Matrix eingeben: ");
+        int m = scanner.nextInt();
+        int n = m;
+
+
+        System.out.println("Start - Dauer maximal "+maxTime+" sek");
 
         while (true) {
             long multTime = mult(m,n);
