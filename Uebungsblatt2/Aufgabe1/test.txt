@@ -1,2 +1,7 @@
-zeile 1
-zeile 2
+INP 2
+INP 3
+LDA 2
+ADD 3
+STA 4
+OUT 4
+HLT 99
