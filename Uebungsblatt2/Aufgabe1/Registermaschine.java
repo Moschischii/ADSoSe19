@@ -57,7 +57,7 @@ public class Registermaschine {
         Integer fAdresse = befehl.getAdresse();
         Integer fAdresseInhalt = this.akku.get(fAdresse);
 
-        System.out.println("F0-Inhalt: " + f0Inhalt + " FAdresse-Inhalt: " + fAdresseInhalt + " Befehl: "+ befehl.getName() +" FAdresse: " + fAdresse);
+        // System.out.println("F0-Inhalt: " + f0Inhalt + " FAdresse-Inhalt: " + fAdresseInhalt + " Befehl: "+ befehl.getName() +" FAdresse: " + fAdresse);
 
         switch (befehl.getName()) {
                 // Standardbefehle
@@ -116,6 +116,8 @@ public class Registermaschine {
                 if (f0Inhalt >= 0)
                     befehlszaehler = fAdresse;
                 break;
+             default:
+                 System.out.println("Befehl nicht bekannt! ("+befehl.getName()+")");
         }
     }
 
