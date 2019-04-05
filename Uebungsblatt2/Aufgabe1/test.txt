@@ -1,8 +1,65 @@
-INP 2
+LDK 1
+STA 1
+LDK 0
+STA 2
+STA 5
 INP 3
 LDA 2
-ADD 3
+MUL 2
 STA 4
+LDA 5
+ADD 4
+STA 5
+LDA 2
+ADD 1
+STA 2
+LDA 3
+SUB 2
+JGZ 6
+LDA 1
+OUT 1
+LDA 2
+OUT 2
+LDA 3
+OUT 3
+LDA 4
 OUT 4
-TEST 5
+LDA 5
+OUT 5
+HLT 99
+
+// 1 = 1
+// 2 = i
+// 3 = n
+// 4 = i*i
+// 5 = Ergebnis
+
+LDK 1 // Laden Zähler = 1
+STA 1 // Speichern Zähler = 1
+LDK 0 // Laden i = 0
+STA 2 // Speichern i = 0
+STA 5 // Speichern Ergebnis = 5
+INP 3 // Benutzereingabe speichern -> n
+LDA 2 // Laden i MARKE
+MUL 2 // i * i
+STA 4 // Zwischenspeicher i
+LDA 5 // Laden Ergebnis
+ADD 4 // Ergebnis + Zwischenspeicher
+STA 5 // Speichern Ergebnis
+LDA 2 // Laden i
+ADD 1 // Erhögen um Zähler 1
+STA 2 // Speichern i
+LDA 3 // Laden n
+SUB 2 // n - i
+JGZ 6 // Wenn größer 0 Wiederholen ab MARKE
+LDA 1
+OUT 1 // Ausgabe Zähler
+LDA 2
+OUT 2 // Ausgabe i
+LDA 3
+OUT 3 // Ausgabe n
+LDA 4
+OUT 4 // Ausgabe Zwischenergebnis
+LDA 5
+OUT 5 // Ausgabe Ergebnis
 HLT 99

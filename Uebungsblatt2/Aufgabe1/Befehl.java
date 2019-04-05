@@ -7,9 +7,16 @@ public class Befehl {
 
     public Befehl(String befehl) {
 
-        String [] words = befehl.split(" ", 2);
-        this.name = words[0];
-        this.adresse = Integer.parseInt(words[1]);
+        if (!befehl.isEmpty()) {
+            // System.out.println("Befehl: " + befehl);
+            String [] words = befehl.split(" ", 2);
+            // System.out.println("Word: " + words.toString());
+            this.name = words[0];
+            this.adresse = Integer.parseInt(words[1]);
+        }
+        else {
+            // System.out.println("Befehl ist leer: " + befehl);
+        }
     }
 
     public boolean isEnd() {
@@ -20,6 +27,7 @@ public class Befehl {
     }
 
     public String getName() {
+        // TODO: Überprüfung ob Befehl bekannt
         return this.name;
     }
 

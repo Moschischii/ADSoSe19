@@ -28,8 +28,11 @@ public class Registermaschine {
             String line;
             int i = 0;
             while ((line = br.readLine()) != null) {
-                register.put(i,new Befehl(line));
+                Befehl neuerBefehl = new Befehl(line);
+                register.put(i,neuerBefehl);
                 // System.out.println("i = " + i+ " Befehl = "+ line);
+                if (neuerBefehl.isEnd())
+                    break;
                 i++;
             }
 
@@ -42,20 +45,20 @@ public class Registermaschine {
 
     public void startProgramm() {
         System.out.println("Start");
-        Befehl aktuellerBefehl = this.befehlsrregister.get(befehlszaehler);
-        while (!aktuellerBefehl.isEnd()) {
+        Befehl aktuellerBefehl = this.befehlsrregister.get(befehlszaehler);  // aktuellen Befehl aus dem Befehlsregister lesen
+        while (!aktuellerBefehl.isEnd()) {  // Überprüfen ob aktueller Befehl "HLT 99"
             befehlAusführen(aktuellerBefehl);
-            befehlszaehler ++;
-            aktuellerBefehl = this.befehlsrregister.get(befehlszaehler);
+            befehlszaehler ++;  // Befehlszähler erhöhen
+            aktuellerBefehl = this.befehlsrregister.get(befehlszaehler);  // nächsten Befehl laden
         }
         System.out.println("End");
     }
 
     private void befehlAusführen(Befehl befehl) {
 
-        Integer f0Inhalt = this.akku.get(0);
-        Integer fAdresse = befehl.getAdresse();
-        Integer fAdresseInhalt = this.akku.get(fAdresse);
+        Integer f0Inhalt = this.akku.get(0);  // inhalt akkumulator f0
+        Integer fAdresse = befehl.getAdresse();  // Speicheradresse des Befehls
+        Integer fAdresseInhalt = this.akku.get(fAdresse); // Inhalt der Speicheradresse des Befehls
 
         // System.out.println("F0-Inhalt: " + f0Inhalt + " FAdresse-Inhalt: " + fAdresseInhalt + " Befehl: "+ befehl.getName() +" FAdresse: " + fAdresse);
 
@@ -121,6 +124,7 @@ public class Registermaschine {
         }
     }
 
+    // Funktion zu Einlesen von Benutzereingaben
     private Integer getInput() {
         System.out.print("Input: ");
         Scanner scanner = new Scanner(System.in);
