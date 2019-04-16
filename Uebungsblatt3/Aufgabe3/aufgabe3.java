@@ -12,10 +12,8 @@ public class aufgabe3 {
         insertionSort(a);
         System.out.println("Ergebins Insert: " + Arrays.toString(a));
 
-        /*
         bubbleSort(b);
         System.out.println("Ergebins Bubble: " + Arrays.toString(b));
-        */
 
         selectionSort(c);
         System.out.println("Ergebins Selection: " + Arrays.toString(c));
@@ -40,12 +38,11 @@ public class aufgabe3 {
         }
     }
 
-    // TODO: Maximum soll nach hinten wandern
     private static void bubbleSort(int a[]) {
         int n = a.length;
 
-        for (int i = 0; i < n; i++) {
-            for (int j = n-2; j >= i; j--) {
+        for (int i = 0; i < n; n--) {
+            for (int j = i; j < n-1; j++) {
                 System.out.println("Array = " + Arrays.toString(a));
                 if (a[j] > a[j+1]) {
                     int h = a[j];
