@@ -15,10 +15,10 @@ public class aufgabe3 {
         /*
         bubbleSort(b);
         System.out.println("Ergebins Bubble: " + Arrays.toString(b));
+        */
 
         selectionSort(c);
         System.out.println("Ergebins Selection: " + Arrays.toString(c));
-        */
     }
 
     private static void insertionSort(int a[]) {
@@ -57,20 +57,19 @@ public class aufgabe3 {
         }
     }
 
-    // TODO: Auswahl ueber Maximum
     private static void selectionSort(int a[]) {
         int n = a.length;
 
-        int i, j, min;
-        for (i = 0; i < n; i++) {
-            min = i;
-            for (j = i; j < n; j++) {
-                if (a[j] < a[min])
-                    min = j;
+        int i, j, max;
+        for (i = n-1; i >= 0; i--) {
+            max = i;
+            for (j = i; j >= 0; j--) {
+                if (a[j] > a[max])
+                    max = j;
             }
             int h = a[i];
-            a[i] = a[min];
-            a[min] = h;
+            a[i] = a[max];
+            a[max] = h;
             System.out.println("Array = " + Arrays.toString(a) + " Tausche " + h +" und " + a[i]);
         }
     }
