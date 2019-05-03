@@ -11,7 +11,7 @@ public class aufgabe1 {
         mergeSort(a, 0,(a.length - 1));
         System.out.println("Ergebins Merge: " + Arrays.toString(a));
 
-        heapSort(b, 5,(b.length - 1)); // TODO: change f!
+        heapSort(b, 0,(b.length - 1));
         System.out.println("Ergebins Heap: " + Arrays.toString(b));
 
     }
@@ -72,7 +72,7 @@ public class aufgabe1 {
             a[f] = a[i];
             a[i] = old;
 
-            heapiy(a, f, i-l, f);
+            heapiy(a, f, i-1, f);
         }
     }
 
@@ -85,15 +85,15 @@ public class aufgabe1 {
 
     public static void heapiy(int a[], int f, int l, int root) {
         int largest;
-        int left = f+(root-2)*2+1;
+        int left = f+(root-f)*2+1;
         int right = f+(root-f)*2+2;
 
-        if (left <= 1 && a[left] > a[root])
+        if (left <= l && a[left] > a[root])
             largest = left;
         else
             largest = root;
 
-        if (right <= 1 && a[right] > a[largest])
+        if (right <= l && a[right] > a[largest])
             largest = right;
 
         if (largest != root) {
