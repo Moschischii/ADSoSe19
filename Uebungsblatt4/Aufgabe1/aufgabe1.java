@@ -9,18 +9,19 @@ public class aufgabe1 {
         int b[] = {-5,13,-32,7,-3,17,23,12,-35,19};
 
         mergeSort(a, 0,(a.length - 1));
+        System.out.println();
         System.out.println("Ergebins Merge: " + Arrays.toString(a));
 
         heapSort(b, 0,(b.length - 1));
+        System.out.println();
         System.out.println("Ergebins Heap: " + Arrays.toString(b));
-
     }
 
     /*
      * Merge Sort
      */
 
-    public static void mergeSort(int a[], int f, int l) {
+    private static void mergeSort(int[] a, int f, int l) {
 
         if (f<l) {
             int m = (f+l+1)/2;
@@ -31,8 +32,7 @@ public class aufgabe1 {
 
     }
 
-    // TODO: add logging
-    public static void merge(int a[], int f, int l, int m) {
+    private static void merge(int[] a, int f, int l, int m) {
         int n = l-f+1;
         int a1f = f;
         int a1l = m-1;
@@ -57,14 +57,16 @@ public class aufgabe1 {
 
         for (int i = 0; i < n; i++)
             a[f+i] = anew[i];
+
+        System.out.println("-------");
+        System.out.println("Merge: " + Arrays.toString(a));
     }
 
     /*
      * Heap Sort
      */
 
-    //TODO: add logging
-    public static void heapSort(int a[], int f, int l) {
+    private static void heapSort(int a[], int f, int l) {
         buildheap(a, f, l);
         for (int i = l; i > f; i--) {
             // swap
@@ -72,18 +74,18 @@ public class aufgabe1 {
             a[f] = a[i];
             a[i] = old;
 
-            heapiy(a, f, i-1, f);
+            heapify(a, f, i-1, f);
         }
     }
 
-    public static void buildheap(int a[], int f, int l) {
+    private static void buildheap(int a[], int f, int l) {
         int n = l-f+1;
         for (int i = (f + (n-2)/2); i >= f; i--) {
-            heapiy(a, f, l ,i);
+            heapify(a, f, l ,i);
         }
     }
 
-    public static void heapiy(int a[], int f, int l, int root) {
+    private static void heapify(int a[], int f, int l, int root) {
         int largest;
         int left = f+(root-f)*2+1;
         int right = f+(root-f)*2+2;
@@ -102,7 +104,10 @@ public class aufgabe1 {
             a[root] = a[largest];
             a[largest] = old;
 
-            heapiy(a, f, l, largest);
+            heapify(a, f, l, largest);
         }
+
+        System.out.println("-------");
+        System.out.println("Heapify: " + Arrays.toString(a));
     }
 }
