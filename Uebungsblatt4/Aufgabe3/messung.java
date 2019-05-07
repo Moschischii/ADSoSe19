@@ -2,23 +2,73 @@ package Uebungsblatt4.Aufgabe3;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Random;
 
 public class messung {
 
     public static void main(String[] args) {
 
-        int[] a = {23,32,5,2,18};
+        for (int i = 0; i < 100; i++)
+            messungStarten();
+
+    }
+
+    private static void messungStarten() {
+
+        Random random = new Random();
+        int size = random.nextInt(1000000);
+
+        System.out.println("------------");
+        System.out.println("Größe des Feldes: " + size);
+
+        int[] a = new int[size];
+
+        for (int i = 0; i < a.length; i++) {
+            int content = 0;
+
+            while (content > 10000 || content < 1000)
+                content = random.nextInt(10000);
+
+            a[i] = content;
+        }
+
         int[] b = Arrays.copyOf(a,a.length);
         int[] c = Arrays.copyOf(a,a.length);
+        long timeStart, timeEnd, zeitCount, zeitHeap, zeitMerge, schnellsteZeit;
 
-        countSort(a,(a.length-1),2);
-        System.out.println("Count: " + Arrays.toString(a));
+        timeStart = System.currentTimeMillis();
+        countSort(a,(a.length),1000);
+        timeEnd = System.currentTimeMillis();
+        zeitCount = (timeEnd - timeStart);
+        // System.out.println("Zeit: " + zeitCount + " Count: " + Arrays.toString(a));
+        System.out.println("Zeit: " + zeitCount + " Count");
 
+        timeStart = System.currentTimeMillis();
         mergeSort(b,0,(b.length-1));
-        System.out.println("Merge: " + Arrays.toString(b));
+        timeEnd = System.currentTimeMillis();
+        zeitMerge = (timeEnd - timeStart);
+        // System.out.println("Zeit: " + zeitMerge + " Merge: " + Arrays.toString(b));
+        System.out.println("Zeit: " + zeitMerge + " Merge");
 
+        timeStart = System.currentTimeMillis();
         heapSort(c, 0, (c.length-1));
-        System.out.println("Heap: " + Arrays.toString(c));
+        timeEnd = System.currentTimeMillis();
+        zeitHeap = (timeEnd - timeStart);
+        // System.out.println("Zeit: " + zeitHeap + " Heap: " + Arrays.toString(c));
+        System.out.println("Zeit: " + zeitHeap + " Heap");
+
+        if (zeitCount < zeitHeap) {
+            schnellsteZeit = zeitCount;
+        }
+        else
+            schnellsteZeit = zeitHeap;
+
+        if (zeitMerge < schnellsteZeit)
+            schnellsteZeit = zeitMerge;
+
+        System.out.println("Schnellste Zeit: " + schnellsteZeit);
+        System.out.println("------------");
+        System.out.println(" ");
     }
 
     /*
@@ -51,7 +101,6 @@ public class messung {
     /*
      * Heap Sort
      */
-
 
     private static void heapSort(int[] a, int f, int l) {
         buildheap(a, f, l);
