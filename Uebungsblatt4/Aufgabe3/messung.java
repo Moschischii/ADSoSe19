@@ -26,7 +26,7 @@ public class messung {
         for (int i = 0; i < a.length; i++) {
             int content = 0;
 
-            while (content > 10000 || content < 1000)
+            while (content < 1000)
                 content = random.nextInt(10000);
 
             a[i] = content;
