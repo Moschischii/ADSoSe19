@@ -52,6 +52,54 @@ public class searchtree1 {
 
     }
 
+    private void CheckAndDelete(tree_element1 current, tree_element1 before) {
+
+        // System.out.println("Current Value: " + current.value + " Right: " + current.right.value + " Left: " + current.left.value);
+        // System.out.println("Before Value: " + before.value + " Right: " + before.right.value + " Left: " + before.left.value);
+
+        if (current.right == null && current.left == null) {
+
+            if (before.right == current)
+                before.right = null;
+            else
+                before.left = null;
+        }
+        else if (current.right != null && current.left == null) {
+            if (before.right == current)
+                before.right = current.right;
+            else
+                before.left = current.right;
+        }
+        else if (current.right == null) {
+            if (before.right == current)
+                before.right = current.left;
+            else
+                before.left = current.left;
+        }
+        else {
+            // Knoten durch Knoten mit kleinstem Wert rechts ersetzen (Inorder-Nachfolger)
+            // TODO: check!!
+
+            tree_element1 smallestRight = current.right;
+            tree_element1 currentSearch = current.right;
+
+            while (currentSearch.right != null) {
+                smallestRight = currentSearch.right;
+
+                if (currentSearch.value < smallestRight.value)
+                    smallestRight = currentSearch;
+
+                currentSearch = currentSearch.right;
+            }
+
+            if (before.right == current)
+                before.right = smallestRight;
+            else
+                before.left = smallestRight;
+
+        }
+    }
+
     void Insert(Object o) {
 
         tree_element1 element = new tree_element1();
@@ -66,7 +114,7 @@ public class searchtree1 {
 
     }
 
-    public boolean Contains(Object o) {
+    boolean Contains(Object o) {
 
         tree_element1 current = root;
 
@@ -87,8 +135,25 @@ public class searchtree1 {
     }
 
 
-    public void DeleteValue(Object o) {
+    void DeleteValue(Object o) {
 
+        tree_element1 current = root;
+        tree_element1 before = null;
+
+        while (current != null) {
+
+            if (current.value == (int) o) {
+                CheckAndDelete(current, before);
+                break;
+            }
+            else {
+                before = current;
+                if ((int) o <= current.value)
+                    current = current.left;
+                else
+                    current = current.right;
+            }
+        }
     }
 
     void Print() {
