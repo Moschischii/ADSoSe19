@@ -57,9 +57,8 @@ public class messung {
         // System.out.println("Zeit: " + zeitHeap + " Heap: " + Arrays.toString(c));
         System.out.println("Zeit: " + zeitHeap + " Heap");
 
-        if (zeitCount < zeitHeap) {
+        if (zeitCount < zeitHeap)
             schnellsteZeit = zeitCount;
-        }
         else
             schnellsteZeit = zeitHeap;
 
