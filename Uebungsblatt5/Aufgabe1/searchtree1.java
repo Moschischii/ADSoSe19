@@ -78,7 +78,6 @@ public class searchtree1 {
         }
         else {
             // Knoten durch Knoten mit kleinstem Wert rechts ersetzen (Inorder-Nachfolger)
-            // TODO: check!!
 
             tree_element1 smallestRight = current.right;
             tree_element1 currentSearch = current.right;
@@ -91,6 +90,15 @@ public class searchtree1 {
 
                 currentSearch = currentSearch.right;
             }
+
+            if (smallestRight != current.right)
+                smallestRight.right = current.right;
+
+            if (smallestRight != current.left)
+                smallestRight.left = current.left;
+
+            current.left = null;
+            current.right = null;
 
             if (before.right == current)
                 before.right = smallestRight;
