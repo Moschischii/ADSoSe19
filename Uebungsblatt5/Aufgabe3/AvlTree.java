@@ -144,7 +144,7 @@ public class AvlTree {
         if (elem == null)
             return; // value not in tree
         else if (elem.val == i) {
-            AvlElem newRoot = DeleteElement(elem, parent);
+            DeleteElement(elem, parent);
             CheckRotationRight(elem);
             CheckRotationLeft(elem);
         }
