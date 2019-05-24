@@ -11,7 +11,7 @@ public class aufgabe1 {
             tree.Insert(value);
 
         tree.Print();
-        tree.DeleteValue(8);
+        tree.DeleteValue(7);
         tree.Print();
         tree.DeleteValue(9);
         tree.Print();

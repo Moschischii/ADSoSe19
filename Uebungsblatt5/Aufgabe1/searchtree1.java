@@ -54,56 +54,92 @@ public class searchtree1 {
 
     private void CheckAndDelete(tree_element1 current, tree_element1 before) {
 
-        // System.out.println("Current Value: " + current.value + " Right: " + current.right.value + " Left: " + current.left.value);
-        // System.out.println("Before Value: " + before.value + " Right: " + before.right.value + " Left: " + before.left.value);
+
+        /*
+        System.out.println("---- New Delete ----");
+        System.out.print("Current: ");
+        current.printElement();
+
+        if (before != null) {
+            System.out.print("Before: ");
+            before.printElement();
+        }
+        else
+            System.out.println("Before: null");
+
+         */
+
 
         if (current.right == null && current.left == null) {
 
-            if (before.right == current)
-                before.right = null;
+            if (before != null) {
+                if (before.right == current)
+                    before.right = null;
+                else
+                    before.left = null;
+            }
             else
-                before.left = null;
+                root = null;
         }
         else if (current.right != null && current.left == null) {
-            if (before.right == current)
-                before.right = current.right;
+            if (before != null) {
+                if (before.right == current)
+                    before.right = current.right;
+                else
+                    before.left = current.right;
+            }
             else
-                before.left = current.right;
+                root = current.right;
         }
         else if (current.right == null) {
-            if (before.right == current)
-                before.right = current.left;
+            if (before != null) {
+                if (before.right == current)
+                    before.right = current.left;
+                else
+                    before.left = current.left;
+            }
             else
-                before.left = current.left;
+                root = current.left;
         }
         else {
             // Knoten durch Knoten mit kleinstem Wert rechts ersetzen (Inorder-Nachfolger)
 
-            tree_element1 smallestRight = current.right;
-            tree_element1 currentSearch = current.right;
+            tree_element1 currentSearch = current;
+            tree_element1 beforeSearch = current;
 
             while (currentSearch.right != null) {
-                smallestRight = currentSearch.right;
-
-                if (currentSearch.value < smallestRight.value)
-                    smallestRight = currentSearch;
-
+                beforeSearch = currentSearch;
                 currentSearch = currentSearch.right;
             }
 
-            if (smallestRight != current.right)
-                smallestRight.right = current.right;
+            /*
+            System.out.print("Current Search: ");
+            currentSearch.printElement();
+            System.out.print("Before Search: ");
+            beforeSearch.printElement();
+            */
 
-            if (smallestRight != current.left)
-                smallestRight.left = current.left;
+            if (currentSearch != current.right)
+                currentSearch.right = current.right;
 
-            current.left = null;
-            current.right = null;
+            if (currentSearch != current.left)
+                currentSearch.left = current.left;
 
-            if (before.right == current)
-                before.right = smallestRight;
-            else
-                before.left = smallestRight;
+            if (before != null) {
+                if (before.right == current)
+                    before.right = currentSearch;
+                else
+                    before.left = currentSearch;
+            }
+            else {
+                root.value = currentSearch.value;
+                currentSearch.right = null;
+                currentSearch.left = null;
+                beforeSearch.right = null;
+            }
+
+            // current.left = null;
+            // current.right = null;
 
         }
     }
