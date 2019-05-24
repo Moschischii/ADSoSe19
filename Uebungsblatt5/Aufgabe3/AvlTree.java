@@ -136,13 +136,74 @@ public class AvlTree {
 
     public void Delete(int i) {
         if (root != null)
-            root = Delete(root, i);
+            Delete(root, i, root);
     }
 
-    private AvlElem Delete(AvlElem elem, int i) {
+    private void Delete(AvlElem elem, int i, AvlElem parent) {
         // TODO: implement Delete
+        if (elem == null)
+            return; // value not in tree
+        else if (elem.val == i) {
+            AvlElem newRoot = DeleteElement(elem, parent);
+            CheckRotationRight(elem);
+            CheckRotationLeft(elem);
+        }
+        else if(elem.val > i) {
+            Delete(elem.right, i, elem);
+            CheckRotationRight(elem);
+        }
+        else {
+            Delete(elem.left, i, elem);
+            CheckRotationLeft(elem);
+        }
+    }
 
+    // evtl return Element
+    private void DeleteElement(AvlElem elem, AvlElem parent) {
+        if (elem.left == null && elem.right == null) {
+            // no childs
+            if (parent.left == elem) {
+                parent.left = null;
+                elem = null;
+            }
+            else {
+                parent.right = null;
+                elem = null;
+            }
 
-        return elem; // TODO: return right elem
+            elem = null;
+            return;
+
+        }
+        else {
+            if (elem.left == null) {
+                if (parent.left == elem) {
+                    parent.left = elem.right;
+                    elem = null;
+                    return;
+                }
+                else {
+                    parent.right = elem.right;
+                    elem = null;
+                    return;
+                }
+            }
+            else if (elem.right == null) {
+                if (parent.left == elem) {
+                    parent.left = elem.left;
+                    elem = null;
+                    return;
+                }
+                else {
+                    parent.right = elem.left;
+                    elem = null;
+                    return;
+                }
+            }
+            else {
+                // zwei nachfolger
+                //TODO: implement case two successors
+            }
+        }
     }
 }
