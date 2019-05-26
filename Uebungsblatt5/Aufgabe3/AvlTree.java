@@ -172,38 +172,64 @@ public class AvlTree {
             }
 
             elem = null;
-            return;
-
         }
         else {
             if (elem.left == null) {
                 if (parent.left == elem) {
                     parent.left = elem.right;
                     elem = null;
-                    return;
                 }
                 else {
                     parent.right = elem.right;
                     elem = null;
-                    return;
                 }
             }
             else if (elem.right == null) {
                 if (parent.left == elem) {
                     parent.left = elem.left;
                     elem = null;
-                    return;
                 }
                 else {
                     parent.right = elem.left;
                     elem = null;
-                    return;
                 }
             }
             else {
                 // zwei nachfolger
                 //TODO: implement case two successors
+                AvlElem successor = SmallestElement(elem.right);
+                SwapElemValue(elem, successor);
+                DeleteElement(successor, FindParent(root, successor, null));
             }
+        }
+    }
+
+    private AvlElem SmallestElement(AvlElem elem) {
+        while (elem.left != null)
+            elem = elem.left;
+
+        return elem;
+    }
+
+    private void SwapElemValue(AvlElem a, AvlElem b) {
+        int cache = b.val;
+        b.val = a.val;
+        a.val = cache;
+    }
+
+    private AvlElem FindParent(AvlElem start, AvlElem elem, AvlElem parent) {
+
+        if (start == null)
+            return null;
+        else if (start == elem) {
+            return parent;
+        }
+        else if(start.val > elem.val) {
+            return FindParent(start.right, elem, start);
+
+        }
+        else {
+            return FindParent(start.left, elem, start);
         }
     }
 }
