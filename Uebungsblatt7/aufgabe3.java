@@ -5,10 +5,10 @@ public class aufgabe3 {
         char[] gesucht = "DATEN".toCharArray();
         char[] gesamt = "ALGORITHMEN UND DATEN- STRUKTUREN".toCharArray();
 
-        naivaeSuche(gesucht, gesamt);
+        naiveSuche(gesucht, gesamt);
     }
 
-    private static void naivaeSuche(char[] gesucht, char[] gesamt) {
+    private static void naiveSuche(char[] gesucht, char[] gesamt) {
 
         int M = gesucht.length;
         int N = gesamt.length;
